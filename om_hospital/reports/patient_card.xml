@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+<!--        <template id="report_patient_cards">-->
+<!--            <t t-call="web.html_container">-->
+<!--                <t t-foreach="docs" t-as="doc">-->
+<!--                    <h2>Patient Card</h2>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </template>-->
+
+        <template id="report_patient">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="doc">
+                    <t t-call="web.external_layout">
+
+                        <div class="page">
+
+                            <h2 style="text-align:center;">
+                                Patient Report
+                            </h2>
+
+
+                            <table class="table table-sm table-bordered" style="width:100%;">
+                                <tr>
+                                    <td><strong>Patient Id</strong></td>
+                                    <td><span t-esc="doc.name_seq"/></td>
+                                    <tr>
+                                        <td><strong>Barcode</strong></td>
+                                        <td colspan="2" class="text-center" >
+                                            <img alt="Barcode"
+                                                 t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('EAN13', doc.name_seq, 600, 150)"
+                                                 style="width:100%; height:4rem;"/>
+                                            <br/>
+                                            <span t-field="doc.name_seq"/>
+                                        </td>
+                                    </tr>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Name</strong></td>
+                                    <td><span t-esc="doc.patient_name"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Age</strong></td>
+                                    <td><span t-esc="doc.patient_age"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Age Group</strong></td>
+                                    <td><span t-esc="doc.age_group"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Gender</strong></td>
+                                    <td><span t-esc="doc.gender"/></td>
+                                </tr>
+
+                                 <tr>
+                                    <td><strong>Contact Number</strong></td>
+                                    <td><span t-esc="doc.cont_num"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Appointments</strong></td>
+                                    <td><span t-esc="doc.appointment_count"/></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Registration Notes</strong></td>
+                                    <td><span t-esc="doc.notes"/></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Patient Image</strong></td>
+                                    <td class="text-center">
+                                        <t t-if="doc.image">
+                                            <img t-att-src="'data:image/png;base64,%s' % doc.image"
+                                                 style="max-height:120px; max-width:120px;"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                            <h2 style="text-align:center;">
+                                Appointment Report
+                            </h2>
+                            <table class="table table-condensed" style="border-bottom: 0px solid white !important;">
+                                <t t-foreach="appointment_list" t-as="app">
+                                    <tr>
+                                        <td>
+                                            <t t-esc="app['name']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="app['notes']"/>
+                                        </td>
+                                        <td>
+                                            <t t-esc="app['appointment_date']"/>
+                                        </td>
+                                    </tr>
+                                </t>
+                            </table>
+
+                            <br/>
+
+<!--                            <h4>Registration Notes</h4>-->
+<!--                            <p t-esc="doc.notes"/>-->
+
+<!--                            <br/>-->
+
+<!--                            <t t-if="doc.image">-->
+<!--                                <h4>Patient Image</h4>-->
+<!--                                <img t-att-src="'data:image/png;base64,%s' % doc.image"-->
+<!--                                     style="max-height:200px;"/>-->
+<!--                            </t>-->
+
+                       </div>
+
+                    </t>
+                </t>
+            </t>
+    </template>
+</odoo>
